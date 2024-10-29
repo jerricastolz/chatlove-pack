@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatLove - PACK SARA MELO</title>
+    <style>
+        html, body {
+            height: 100%; /* Garante que o body ocupe a altura total da viewport */
+            margin: 0; /* Remove margens padrão do navegador */
+            padding: 0; /* Remove o padding padrão */
+        }
+        .card-typebot {
+            width: 100vw; /* Largura total da viewport */
+            height: 100vh; /* Altura total da viewport */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centraliza o iframe horizontalmente */
+            justify-content: center; /* Centraliza o iframe verticalmente */
+            background: rgb(255, 255, 255);
+            box-shadow: 0px 5px 15px 5px rgba(0,0,0,0.2);
+            overflow: hidden; /* Oculta qualquer overflow */
+        }
+        .card-typebot iframe {
+            width: 100%; /* Largura total do container */
+            height: 100%; /* Altura total do container */
+            border: none; /* Remove a borda do iframe */
+        }
+    </style>
+</head>
+<body onload="passIframeData()">
+    <div class="card-typebot">
+        <iframe src="https://www.juliodesign.site/pagina-d/"
+            title="W3Schools Free Online Web Tutorials"></iframe>
+    </div>
+    <script>
+        function passIframeData() {
+            var a = document.querySelector("iframe"), 
+                e = new URL(a.src); 
+            new URL(window.location.href).searchParams.forEach(((a, r) => e.searchParams.set(r, a))), 
+            a.src = e.href;
+        }
+    </script>
+</body>
+</html>
