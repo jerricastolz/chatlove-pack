@@ -6,25 +6,25 @@
     <title>ChatLove - PACK SARA MELO</title>
     <style>
         html, body {
-            height: 100%; /* Garante que o body ocupe a altura total da viewport */
-            margin: 0; /* Remove margens padrão do navegador */
-            padding: 0; /* Remove o padding padrão */
+            height: 100%;
+            margin: 0;
+            padding: 0;
         }
         .card-typebot {
-            width: 100vw; /* Largura total da viewport */
-            height: 100vh; /* Altura total da viewport */
+            width: 100vw;
+            height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Centraliza o iframe horizontalmente */
-            justify-content: center; /* Centraliza o iframe verticalmente */
+            align-items: center;
+            justify-content: center;
             background: rgb(255, 255, 255);
             box-shadow: 0px 5px 15px 5px rgba(0,0,0,0.2);
-            overflow: hidden; /* Oculta qualquer overflow */
+            overflow: hidden;
         }
         .card-typebot iframe {
-            width: 100%; /* Largura total do container */
-            height: 100%; /* Altura total do container */
-            border: none; /* Remove a borda do iframe */
+            width: 100%;
+            height: 100%;
+            border: none;
         }
     </style>
 </head>
@@ -34,11 +34,30 @@
             title="W3Schools Free Online Web Tutorials"></iframe>
     </div>
     <script>
+        let hasSent = false; // Variável de controle para evitar envios duplicados
+
         function passIframeData() {
-            var a = document.querySelector("iframe"), 
-                e = new URL(a.src); 
-            new URL(window.location.href).searchParams.forEach(((a, r) => e.searchParams.set(r, a))), 
-            a.src = e.href;
+            if (hasSent) return; // Impede o envio duplicado
+            hasSent = true;
+
+            var iframe = document.querySelector("iframe"), 
+                iframeUrl = new URL(iframe.src); 
+
+            new URL(window.location.href).searchParams.forEach((value, key) => {
+                iframeUrl.searchParams.set(key, value);
+            });
+
+            iframe.src = iframeUrl.href;
+
+            // Código para enviar os dados para o webhook
+            // Exemplo de código para envio (substitua com seu webhook)
+            // fetch('https://seu-webhook-url.com', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify({ /* seus dados */ })
+            // });
         }
     </script>
 </body>
